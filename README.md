@@ -9,6 +9,10 @@ for replace my HAProxy service, available docker image, only support format ss[-
 
 > Optional: `rr`,`ha`, `lha`, `dh`
 
+- ENV LISTEN `default:` :8443
+
+> instance listen protocol, host network mode avoid udp block
+
 - CHECK `default:` "www.msftconnecttest.com/connecttest.txt#expect=200"
 
 >health check address

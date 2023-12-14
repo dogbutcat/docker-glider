@@ -75,7 +75,7 @@ function output_config {
 		mkdir -p "${SUB_FOLDER}"
 		echo "verbose=${VERBOSE}" > $CONFIG_FILE
 		echo "strategy=${STRATEGY}" >> $CONFIG_FILE
-		echo "listen=:8443" >> $CONFIG_FILE
+		echo "listen=${LISTEN}" >> $CONFIG_FILE
 		echo "check=${CHECK}" >> $CONFIG_FILE
 		echo "checkinterval=60" >> $CONFIG_FILE
 

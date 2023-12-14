@@ -10,6 +10,7 @@ ENV GLIDER_URL https://github.com/nadoo/glider/releases/download/v${GLIDER_VERSI
 
 ENV VERBOSE True
 ENV STRATEGY rr
+ENV LISTEN :8443
 ENV CHECK=http://www.msftconnecttest.com/connecttest.txt#expect=200
 
 ENV SUBLINK ""
