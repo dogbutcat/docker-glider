@@ -19,6 +19,7 @@ ENV COUNTRY ""
 ENV MANUAL 0
 ENV MANUAL_LINK ""
 ENV MANUAL_LINK_BAK ""
+ENV APPEND_LINK ""
 
 RUN curl -sL $GLIDER_URL | busybox tar xvzf - \
 	&& install glider_${GLIDER_VERSION}_linux_amd64v3/glider /usr/local/bin/

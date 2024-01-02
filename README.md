@@ -41,6 +41,10 @@ for replace my HAProxy service, available docker image, only support format ss[-
 
 >active while set `MANUAL_LINK`, same format.
 
+- APPEND_LINK  `default:` ""
+
+>same format with `MANUAL_LINK`, append after each filtered sublink
+
 ## Example
 
 ## 1. Link

@@ -85,7 +85,12 @@ function output_config {
 			else
 				SUB=$(cat ${SUB_FILE})
 			fi
-			echo "$SUB" |grep "${COUNTRY}" | awk '{print "forward="$0}' >> $CONFIG_FILE
+			if [ "$APPEND_LINK" == "" ]; then
+				echo "$SUB" |grep "${COUNTRY}" | awk '{print "forward="$0}' >> $CONFIG_FILE
+			else
+				echo "$SUB" |grep "${COUNTRY}" | awk -F'#' '{print "forward="$1 s a c $2}' c="#" s="," a="$APPEND_LINK" >> $CONFIG_FILE
+			fi
+
 		elif [ "$MANUAL" == 1 ]; then
 			echo "forward=$MANUAL_LINK" >> $CONFIG_FILE
 			if [ ! "$MANUAL_LINK_BAK" == "" ];then
