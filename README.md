@@ -27,7 +27,7 @@ for replace my HAProxy service, available docker image, only support format ss[-
 
 - COUNTRY `default:` "".
 
->filter subscribe link for forward.
+>filter subscribe link for forward. support use '|' to filter multiple countries
 
 - MANUAL `default:` 0
 
@@ -44,6 +44,11 @@ for replace my HAProxy service, available docker image, only support format ss[-
 - APPEND_LINK  `default:` ""
 
 >same format with `MANUAL_LINK`, append after each filtered sublink
+
+- RENEW  `default:` 0
+
+>Optional: 1
+>force renew sub link file
 
 ## Example
 

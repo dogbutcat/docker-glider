@@ -62,6 +62,7 @@ function get_sub {
 			;;
 		"obfs")
 			decode_obfs ${EDITED_SUB}
+			;;
 	esac
 	LINK=$(cat ${SUB_FILE})
 	echo "$LINK"
@@ -80,16 +81,28 @@ function output_config {
 		echo "checkinterval=60" >> $CONFIG_FILE
 
 		if [ "$MANUAL" == 0 ]; then
-			if [ ! -e "${SUB_FILE}" ];then
+			if [ ! -e "${SUB_FILE}" ] || [ "${RENEW}" -eq 1 ];then
 				SUB=$(get_sub)
 			else
 				SUB=$(cat ${SUB_FILE})
 			fi
-			if [ "$APPEND_LINK" == "" ]; then
-				echo "$SUB" |grep "${COUNTRY}" | awk '{print "forward="$0}' >> $CONFIG_FILE
-			else
-				echo "$SUB" |grep "${COUNTRY}" | awk -F'#' '{print "forward="$1 s a c $2}' c="#" s="," a="$APPEND_LINK" >> $CONFIG_FILE
-			fi
+			# if [ "$APPEND_LINK" == "" ]; then
+			# 	echo "$COUNTRY" | awk -F '|' '{for (i=1; i<=NF; i++) print $i}' | while read pattern; do
+			# 		echo "$SUB" |grep "${pattern}" | awk '{print "forward="$0}' >> $CONFIG_FILE
+			# 	done
+
+			# else
+			# 	echo "$COUNTRY" | awk -F '|' '{for (i=1; i<=NF; i++) print $i}' | while read pattern; do
+			# 		echo "$SUB" |grep "${pattern}" | awk -F'#' '{print "forward="$1 s a c $2}' c="#" s="," a="$APPEND_LINK" >> $CONFIG_FILE
+			# 	done
+			# fi
+			echo "$COUNTRY" | awk -F '|' '{for (i=1; i<=NF; i++) print $i}' | while read pattern; do
+				if [ "$APPEND_LINK" == "" ]; then
+					echo "$SUB" |grep "${pattern}" | awk '{print "forward="$0}' >> $CONFIG_FILE
+				else
+					echo "$SUB" |grep "${pattern}" | awk -F'#' '{print "forward="$1 s a c $2}' c="#" s="," a="$APPEND_LINK" >> $CONFIG_FILE
+				fi
+			done
 
 		elif [ "$MANUAL" == 1 ]; then
 			echo "forward=$MANUAL_LINK" >> $CONFIG_FILE
