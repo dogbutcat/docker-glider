@@ -69,6 +69,9 @@ function get_sub {
 }
 
 function output_config {
+	if [ "${RENEW}" -eq 1 ];then
+		[ -f "${CONFIG_FILE}" ] && rm "${CONFIG_FILE}"
+	fi
 	if [ -e "${CONFIG_FILE}" ];then
 		echo Existed Config:
 		cat "${CONFIG_FILE}"
